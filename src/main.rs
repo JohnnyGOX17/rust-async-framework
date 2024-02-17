@@ -9,7 +9,7 @@ fn main() {
         .into_iter()
         .map(|id| {
             thread::spawn(move || {
-                // doesn't work on apple silicon https://github.com/Elzair/core_affinity_rs/issues/22
+                // NOTE: doesn't work on apple silicon https://github.com/Elzair/core_affinity_rs/issues/22
                 if core_affinity::set_for_current(id) {
                     println!("Hello from thread {id:?}");
                 } else {
