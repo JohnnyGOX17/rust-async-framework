@@ -1,27 +1,20 @@
-extern crate core_affinity;
 use std::thread;
+use std::time::Duration;
 
 fn main() {
-    // Retrieve the IDs of all active CPU cores
-    let core_ids = core_affinity::get_core_ids().unwrap();
-
-    let handles = core_ids
-        .into_iter()
-        .map(|id| {
-            thread::spawn(move || {
-                // NOTE: doesn't work on apple silicon https://github.com/Elzair/core_affinity_rs/issues/22
-                if core_affinity::set_for_current(id) {
-                    println!("Hello from thread {id:?}");
-                } else {
-                    println!("ruh roh");
-                }
-            })
+    let threads: Vec<_> = (0..10)
+        .map(|i| {
+            thread::Builder::new()
+                .name("My test thread {i}".to_string())
+                .spawn(move || {
+                    println!("Thread #{i} started!");
+                    thread::sleep(Duration::from_secs(2));
+                    println!("Thread #{i} finished!");
+                })
         })
-        .collect::<Vec<_>>();
+        .collect();
 
-    for handle in handles.into_iter() {
-        handle.join().unwrap();
+    for handle in threads {
+        handle.unwrap().join().unwrap();
     }
-
-    // Can show thread names in htop by F2 → Display options → Show custom thread names
 }

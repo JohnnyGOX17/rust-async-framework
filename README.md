@@ -4,10 +4,15 @@
 
 * `lscpu -C` can show `COHERENCY-SIZE` as the "minimum amount of data in bytes transferred from memory to cache".
 * Can show thread names in htop by F2 → Display options → Show custom thread names
+  + Can manually set thread priority (on non Apple Silicon devices) using [`core_affinity` crate](https://docs.rs/core_affinity/latest/core_affinity/).
+
+## Benchmarking
+
+Uses [Criterion.rs](https://bheisler.github.io/criterion.rs/book/criterion_rs.html) for [`cargo bench`](https://doc.rust-lang.org/cargo/commands/cargo-bench.html). Mainly uses `gnuplot` to [generate benchmark plots](https://bheisler.github.io/criterion.rs/book/user_guide/plots_and_graphs.html).
 
 ## TODO
 
-- [ ] Start with https://github.com/polyfractal/bounded-spsc-queue (look at recent PRs to get building), and compare with [crossbeam](https://github.com/crossbeam-rs/crossbeam) primitives/performance
+- [ ] Commpare [bounded-spsc-queue](Start with https://github.com/polyfractal/bounded-spsc-queue (look at recent PRs to get building),) with [crossbeam](https://github.com/crossbeam-rs/crossbeam) primitives/performance
 
 ## References
 
@@ -22,9 +27,4 @@
 - [ ] [Rust `std` library](https://doc.rust-lang.org/std/index.html)
 - [ ] [Thread pool - Wikipedia](https://en.wikipedia.org/wiki/Thread_pool)
 - [ ] [disruptor-rs](https://github.com/nicholassm/disruptor-rs)
-- [ ] [clap](https://github.com/clap-rs/clap): command line argument parser
-- [ ] [tui-rs](https://github.com/fdehau/tui-rs): Terminal User Interface (TUI) and dashboard crate
-- [ ] [hashbrown](https://docs.rs/hashbrown/latest/hashbrown/)
-- [ ] [tracing](https://docs.rs/tracing/latest/tracing/)
-  + [tracing_subscriber](https://docs.rs/tracing-subscriber/latest/tracing_subscriber/)
 
