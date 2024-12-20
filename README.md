@@ -16,6 +16,7 @@ Uses [Criterion.rs](https://bheisler.github.io/criterion.rs/book/criterion_rs.ht
   + https://github.com/coralblocks/CoralRing
   + https://github.com/FutureSDR/FutureSDR
 - [ ] [A Bounded SPSC queue for Rust](https://github.com/JohnnyGOX17/bounded-spsc-queue)
+- [ ] [Why is ringbuf crate so fast?- Reddit](https://www.reddit.com/r/rust/comments/1h3bqv0/why_is_ringbuf_crate_so_fast/)
 - [ ] Can manually set thread priority (on non Apple Silicon devices) using [`core_affinity` crate](https://docs.rs/core_affinity/latest/core_affinity/)
 - [ ] [crossbeam](https://github.com/crossbeam-rs/crossbeam)
 - [ ] [hashbrown](https://docs.rs/hashbrown/latest/hashbrown/)
