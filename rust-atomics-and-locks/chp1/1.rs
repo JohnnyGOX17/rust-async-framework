@@ -1,13 +1,30 @@
 use std::thread;
 
 fn main() {
-    let t1 = thread::spawn(f);
-    let t2 = thread::spawn(f);
+    // Spawn threads with an explicit function
+    {
+        let t1 = thread::spawn(f);
+        let t2 = thread::spawn(f);
 
-    println!("Hello from the main thread.");
+        println!("Hello from the main thread.");
 
-    t1.join().unwrap();
-    t2.join().unwrap();
+        // Wait till threads are finished before continuing (returns Result)
+        t1.join().unwrap();
+        t2.join().unwrap();
+    }
+
+    // Commonly, we can pass functionality to a thread as a closure rather than a function
+    {
+        let numbers = vec![1, 2, 3];
+
+        thread::spawn(move || {
+            for n in &numbers {
+                println!("Closure thread: {n}");
+            }
+        })
+        .join()
+        .unwrap();
+    }
 }
 
 fn f() {
